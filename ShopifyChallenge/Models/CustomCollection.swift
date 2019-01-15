@@ -1,5 +1,5 @@
 //
-//  Collection.swift
+//  CustomCollection.swift
 //  ShopifyChallenge
 //
 //  Created by Phuoc Tran on 2019-01-14.
@@ -8,11 +8,10 @@
 
 import Foundation
 
-class Collection {
-    private let id: Int
-    private let handle: String
-    private let title: String
-
+class CustomCollection {
+    let id: Int
+    let handle: String
+    let title: String
 
     init(id: Int, handle: String, title: String) {
         self.id = id

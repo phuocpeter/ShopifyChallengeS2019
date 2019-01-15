@@ -1,5 +1,5 @@
 //
-//  Product.swift
+//  CustomCollectionDetail.swift
 //  ShopifyChallenge
 //
 //  Created by Phuoc Tran on 2019-01-14.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-class Product {
-    private let id: Int
-    private let title: String
-    private let body: String
+class CustomCollectionDetail {
+    let id: Int
+    let title: String
+    let body: String
 
     init(id: Int, title: String, body: String) {
         self.id = id
