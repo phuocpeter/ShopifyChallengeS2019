@@ -1,5 +1,5 @@
 //
-//  CustomCollectionDetail.swift
+//  Product.swift
 //  ShopifyChallenge
 //
 //  Created by Phuoc Tran on 2019-01-14.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CustomCollectionDetail {
+class Product {
     let id: Int
     let title: String
     let body: String

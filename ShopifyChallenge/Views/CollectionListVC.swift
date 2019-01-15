@@ -35,7 +35,7 @@ class CollectionListVC: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let cCollection = viewModel.collections[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! CollectionDetailVC
-                controller.detailItem = cCollection
+                controller.detailItem = viewModel.getProducts(forCollection: cCollection)
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

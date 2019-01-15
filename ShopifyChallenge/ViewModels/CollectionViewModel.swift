@@ -17,4 +17,9 @@ class CollectionViewModel {
         api = MockAPI()
         collections = api.getCustomCollections()
     }
+
+    func getProducts(forCollection collection: CustomCollection) -> [Product] {
+        let collects = api.getCollect(ofCollection: collection)
+        return api.getProducts(fromCollects: collects)
+    }
 }

@@ -17,7 +17,7 @@ class CollectionDetailVC: UIViewController {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             if let label = detailDescriptionLabel {
-                label.text = detail.title
+                label.text = detail.description
             }
         }
     }
@@ -28,7 +28,7 @@ class CollectionDetailVC: UIViewController {
         configureView()
     }
 
-    var detailItem: CustomCollection? {
+    var detailItem: [Product]? {
         didSet {
             // Update the view.
             configureView()
