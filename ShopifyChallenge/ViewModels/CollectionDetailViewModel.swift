@@ -11,7 +11,7 @@ import Foundation
 class CollectionDetailViewModel {
 
     var isFetching = false
-    private var api: API = MockAPI()
+    private var api: API = ShopifyAPI()
     private var products: [Product]?
     var count: Int {
         get {
