@@ -18,4 +18,17 @@ class CustomCollection {
         self.handle = handle
         self.title = title
     }
+
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let handle = json["handle"] as? String,
+            let title = json["title"] as? String
+            else {
+                return nil
+        }
+
+        self.id = id
+        self.handle = handle
+        self.title = title
+    }
 }

@@ -10,16 +10,29 @@ import Foundation
 
 class CollectionViewModel {
 
-    let api: MockAPI
-    var collections: [CustomCollection]
-
-    init() {
-        api = MockAPI()
-        collections = api.getCustomCollections()
+    var isFetching = false
+    private var api: API = MockAPI()
+    private var collection: [CustomCollection]?
+    var count: Int {
+        get {
+            return collection?.count ?? 0
+        }
     }
 
-    func getProducts(forCollection collection: CustomCollection) -> [Product] {
-        let collects = api.getCollect(ofCollection: collection)
-        return api.getProducts(fromCollects: collects)
+    subscript(index: Int) -> CustomCollection? {
+        get {
+            return collection?[index]
+        }
+    }
+
+    func refreshData(completion: @escaping () -> ()) {
+        guard !isFetching else { return }
+        isFetching = true
+        api.getCustomCollections() { (collection, error) in
+            guard error == nil else { return }
+            self.collection = collection
+            self.isFetching = false
+            completion()
+        }
     }
 }

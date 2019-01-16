@@ -13,13 +13,17 @@ class CollectionListVC: UITableViewController {
     let viewModel = CollectionViewModel()
     var detailViewController: CollectionDetailVC? = nil
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CollectionDetailVC
+        }
+        viewModel.refreshData {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -32,10 +36,10 @@ class CollectionListVC: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let cCollection = viewModel.collections[indexPath.row]
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let cCollection = viewModel[indexPath.row] {
                 let controller = (segue.destination as! UINavigationController).topViewController as! CollectionDetailVC
-                controller.detailItem = viewModel.getProducts(forCollection: cCollection)
+                controller.loadProducts(ofCollection: cCollection)
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -49,14 +53,14 @@ class CollectionListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.collections.count
+        return viewModel.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let cCollection = viewModel.collections[indexPath.row]
-        cell.textLabel!.text = cCollection.title
+        let cCollection = viewModel[indexPath.row]
+        cell.textLabel!.text = cCollection?.title ?? "Empty"
         return cell
     }
 

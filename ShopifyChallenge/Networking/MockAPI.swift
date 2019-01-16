@@ -8,30 +8,22 @@
 
 import Foundation
 
-class MockAPI {
+class MockAPI: API {
 
-    func getCustomCollections() -> [CustomCollection] {
+    func getCustomCollections(completion: @escaping CustomCollectionFetchResult) {
         var collection = [CustomCollection]()
         collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
         collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
         collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
-        print("Loaded collection")
-        return collection
+        completion(collection, nil)
     }
 
-    func getCollect(ofCollection collection: CustomCollection) -> [Collect] {
-        var collect = [Collect]()
-        collect.append(Collect(id: 2759162243))
-        return collect
-    }
-
-    func getProducts(fromCollects collects: [Collect]) -> [Product] {
+    func getProducts(for collection: CustomCollection, completion: @escaping ProductFetchResult) {
         var products = [Product]()
         products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals"))
         products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals"))
         products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals"))
         products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals"))
-        return products
+        completion(products, nil)
     }
-
 }

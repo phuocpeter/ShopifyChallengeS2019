@@ -18,4 +18,17 @@ class Product {
         self.title = title
         self.body = body
     }
+
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let body = json["body_html"] as? String,
+            let title = json["title"] as? String
+            else {
+                return nil
+        }
+
+        self.id = id
+        self.body = body
+        self.title = title
+    }
 }
