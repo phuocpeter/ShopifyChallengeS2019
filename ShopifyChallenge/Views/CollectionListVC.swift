@@ -20,9 +20,28 @@ class CollectionListVC: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CollectionDetailVC
         }
-        viewModel.refreshData {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+
+        refresh()
+    }
+
+    @objc
+    func refresh() {
+        viewModel.refreshData { error in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+                if error != nil {
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "Okay", style: .default) {_ in
+                        self.tableView.refreshControl?.endRefreshing()
+                    }
+                    alert.addAction(okayAction)
+                    self.present(alert, animated: true)
+                } else {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -42,6 +61,7 @@ class CollectionListVC: UITableViewController {
                 controller.loadProducts(ofCollection: cCollection)
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
+                controller.navigationItem.title = cCollection.title
             }
         }
     }

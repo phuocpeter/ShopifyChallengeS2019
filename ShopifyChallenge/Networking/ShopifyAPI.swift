@@ -23,47 +23,43 @@ class ShopifyAPI: API {
 
     func getCustomCollections(completion: @escaping CustomCollectionFetchResult) {
         let url = URL(string: CUSTOM_COLLECTION_URL)
-        URLSession.shared.dataTask(with: url!) { (data, res, err) in
-            if data != nil {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!)
-                    if let dict = json as? [String: Any] {
-                        if let cc = dict["custom_collections"] as? [[String: Any]] {
-                            var res = [CustomCollection]()
-                            for obj in cc {
-                                if let col = CustomCollection.init(json: obj) {
-                                    res.append(col)
-                                }
-                            }
-                            completion(res, nil)
-                            return
+        URLSession.shared.dataTask(with: url!) { (data, _, error) in
+            guard error == nil else {
+                return completion(nil, .networkError(error))
+            }
+            guard data != nil else {
+                return completion(nil, .missingResponseData)
+            }
+            let json = try? JSONSerialization.jsonObject(with: data!)
+            guard json != nil else {
+                return completion(nil, .invalidData(message: "Failed to serialize response to JSON"))
+            }
+            if let dict = json as? [String: Any] {
+                if let cc = dict["custom_collections"] as? [[String: Any]] {
+                    var res = [CustomCollection]()
+                    for obj in cc {
+                        if let col = CustomCollection.init(json: obj) {
+                            res.append(col)
                         }
                     }
-                    completion(nil, nil)
-                    return
-                } catch {
-                    completion(nil, error)
+                    completion(res, nil)
                 }
             }
-            completion(nil, nil)
         }.resume()
     }
 
     func getProducts(for collection: CustomCollection, completion: @escaping ProductFetchResult) {
         let url = getCollectURL(for: collection)
-        URLSession.shared.dataTask(with: url!) { (data, res, err) in
-            guard err == nil else {
-                completion(nil, err)
-                return
+        URLSession.shared.dataTask(with: url!) { (data, _, error) in
+            guard error == nil else {
+                return completion(nil, .networkError(error))
             }
             guard data != nil else {
-                completion(nil, NSError(domain: "shopifyAPIError", code: 2, userInfo: nil))
-                return
+                return completion(nil, .missingResponseData)
             }
             let json = try? JSONSerialization.jsonObject(with: data!)
             guard json != nil else {
-                completion(nil, NSError(domain: "shopifyAPIError", code: 3, userInfo: nil))
-                return
+                return completion(nil, .invalidData(message: "Failed to serialize response to JSON"))
             }
             if let dict = json as? [String: Any],
                 let array = dict["collects"] as? [[String: Any]] {
@@ -73,34 +69,31 @@ class ShopifyAPI: API {
                         ids.append(productId)
                     }
                 }
-                self.getProducts(fromCollectIds: ids) { (data, err) in
+                self.getProducts(fromCollectIds: ids, collectionName: collection.title) { (data, err) in
                     completion(data, err)
                 }
             }
-            }.resume()
+        }.resume()
     }
 
-    private func getProducts(fromCollectIds ids: [Int], completion: @escaping ProductFetchResult) {
+    private func getProducts(fromCollectIds ids: [Int], collectionName collection: String, completion: @escaping ProductFetchResult) {
         let url = getProductURL(for: ids)
-        URLSession.shared.dataTask(with: url!) { (data, res, err) in
-            guard err == nil else {
-                completion(nil, err)
-                return
+        URLSession.shared.dataTask(with: url!) { (data, _, error) in
+            guard error == nil else {
+                return completion(nil, .networkError(error))
             }
             guard data != nil else {
-                completion(nil, NSError(domain: "shopifyAPIError", code: 2, userInfo: nil))
-                return
+                return completion(nil, .missingResponseData)
             }
             let json = try? JSONSerialization.jsonObject(with: data!)
             guard json != nil else {
-                completion(nil, NSError(domain: "shopifyAPIError", code: 3, userInfo: nil))
-                return
+                return completion(nil, .invalidData(message: "Failed to serialize response to JSON"))
             }
             if let dict = json as? [String: Any],
                 let array = dict["products"] as? [[String: Any]] {
                 var products = [Product]()
                 for obj in array {
-                    if let product = Product(json: obj) {
+                    if let product = Product(json: obj, collectionName: collection) {
                         products.append(product)
                     }
                 }

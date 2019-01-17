@@ -20,10 +20,10 @@ class MockAPI: API {
 
     func getProducts(for collection: CustomCollection, completion: @escaping ProductFetchResult) {
         var products = [Product]()
-        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100))
-        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100))
-        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100))
-        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100))
+        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100, collection: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
+        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100, collection: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
+        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100, collection: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
+        products.append(Product(id: 2759137027, title: "Aerodynamic Concrete Clock", body: "Transition rich vortals", available: 100, collection: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
         completion(products, nil)
     }
 }

@@ -28,25 +28,20 @@ class CollectionDetailViewModel {
         }
     }
 
-    func loadProducts(ofCollection collection: CustomCollection, completion: @escaping () -> ()) {
+    func loadProducts(ofCollection collection: CustomCollection, completion: @escaping (Error?) -> ()) {
         guard !isFetching else { return }
         isFetching = true
         api.getProducts(for: collection) { (products, error) in
-            guard error == nil else { return }
-            guard products != nil else { return }
+            guard error == nil else {
+                completion(error!)
+                return
+            }
+            guard products != nil else {
+                return
+            }
             self.products = products
             self.isFetching = false
-            completion()
+            completion(nil)
         }
-        /*api.getCollects(ofCollection: collection) { (collects, error) in
-            guard error == nil else { return }
-            guard collects != nil else { return }
-            self.api.getProducts(fromCollects: collects!) { (products, error) in
-                guard error == nil else { return }
-                self.products = products
-                self.isFetching = false
-                completion()
-            }
-        }*/
     }
 }

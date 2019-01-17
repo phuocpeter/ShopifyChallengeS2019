@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9840671521EFCD270001E21F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9840671421EFCD270001E21F /* ProductTableViewCell.swift */; };
 		989D070E21ED989C00A84CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D070D21ED989C00A84CD0 /* AppDelegate.swift */; };
 		989D071021ED989C00A84CD0 /* CollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D070F21ED989C00A84CD0 /* CollectionListVC.swift */; };
 		989D071221ED989C00A84CD0 /* CollectionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D071121ED989C00A84CD0 /* CollectionDetailVC.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9840671421EFCD270001E21F /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		989D070A21ED989C00A84CD0 /* ShopifyChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989D070D21ED989C00A84CD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		989D070F21ED989C00A84CD0 /* CollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListVC.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				989D070F21ED989C00A84CD0 /* CollectionListVC.swift */,
 				989D071121ED989C00A84CD0 /* CollectionDetailVC.swift */,
+				9840671421EFCD270001E21F /* ProductTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				989D073021EDAB6400A84CD0 /* ShopifyAPI.swift in Sources */,
 				989D073221EDAB7700A84CD0 /* API.swift in Sources */,
 				989D072C21EDA1DE00A84CD0 /* MockAPI.swift in Sources */,
+				9840671521EFCD270001E21F /* ProductTableViewCell.swift in Sources */,
 				989D072521ED9CD600A84CD0 /* Product.swift in Sources */,
 				989D070E21ED989C00A84CD0 /* AppDelegate.swift in Sources */,
 				989D072321ED9C1300A84CD0 /* CustomCollection.swift in Sources */,
@@ -349,6 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B9SFNFU5X;
 				INFOPLIST_FILE = ShopifyChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +372,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6B9SFNFU5X;
 				INFOPLIST_FILE = ShopifyChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

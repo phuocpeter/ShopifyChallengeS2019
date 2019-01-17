@@ -25,14 +25,16 @@ class CollectionViewModel {
         }
     }
 
-    func refreshData(completion: @escaping () -> ()) {
+    func refreshData(completion: @escaping (APIError?) -> ()) {
         guard !isFetching else { return }
         isFetching = true
         api.getCustomCollections() { (collection, error) in
-            guard error == nil else { return }
-            self.collection = collection
             self.isFetching = false
-            completion()
+            guard error == nil else {
+                return completion(error)
+            }
+            self.collection = collection
+            completion(nil)
         }
     }
 }
