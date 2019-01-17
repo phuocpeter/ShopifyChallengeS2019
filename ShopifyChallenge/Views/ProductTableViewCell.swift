@@ -18,6 +18,12 @@ class ProductTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let selectedBackground = UIView()
+        selectedBackground.backgroundColor = UIColor(red: 92.0 / 255.0, green: 106.0 / 255.0, blue: 196.0 / 255.0, alpha: 0.85)
+        selectedBackgroundView = selectedBackground
+        nameLabel?.highlightedTextColor = .white
+        collectionLabel?.highlightedTextColor = .white
+        availabilityLabel?.highlightedTextColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

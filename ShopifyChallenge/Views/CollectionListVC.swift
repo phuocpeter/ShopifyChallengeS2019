@@ -21,6 +21,7 @@ class CollectionListVC: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CollectionDetailVC
         }
         let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
         if #available(iOS 11.0, *) {
@@ -80,6 +81,9 @@ class CollectionListVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let collection = viewModel[indexPath.row]
         cell.textLabel!.text = collection?.title ?? "Empty"
+        let selectedBackground = UIView()
+        selectedBackground.backgroundColor = UIColor(red: 92.0 / 255.0, green: 106.0 / 255.0, blue: 196.0 / 255.0, alpha: 0.85)
+        cell.selectedBackgroundView = selectedBackground
         return cell
     }
 }

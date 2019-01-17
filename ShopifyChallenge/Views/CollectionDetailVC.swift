@@ -11,7 +11,7 @@ import UIKit
 class CollectionDetailVC: UITableViewController {
 
     let viewModel = CollectionDetailViewModel()
-    var loadingView = UIActivityIndicatorView(style: .gray)
+    var loadingView = UIActivityIndicatorView(style: .white)
 
     override func viewDidLoad() {
         super.viewDidLoad()
