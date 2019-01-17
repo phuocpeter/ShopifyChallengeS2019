@@ -13,6 +13,7 @@ class CollectionViewModel {
     var isFetching = false
     private var api: API = ShopifyAPI()
     private var collection: [CustomCollection]?
+
     var count: Int {
         get {
             return collection?.count ?? 0

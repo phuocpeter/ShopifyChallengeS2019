@@ -11,11 +11,12 @@ import UIKit
 class CollectionDetailVC: UITableViewController {
 
     let viewModel = CollectionDetailViewModel()
-    var isFetching = false
+    var loadingView = UIActivityIndicatorView(style: .gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        loadingView.hidesWhenStopped = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loadingView)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,27 +24,23 @@ class CollectionDetailVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !isFetching,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductTableViewCell,
-            let product = viewModel[indexPath.row] else {
-                print("")
+        guard let product = viewModel[indexPath.row] else {
                 return createEmptyCell(tableView)
         }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductTableViewCell
         cell.configure(for: product, in: tableView, at: indexPath)
         return cell
     }
 
-    func createEmptyCell(_ tableView: UITableView) -> UITableViewCell {
-        print("Empty creatign")
+    private func createEmptyCell(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell")
         cell!.textLabel?.text = "Empty"
         return cell!
     }
 
     func loadProducts(ofCollection collection: CustomCollection) {
-        isFetching = true
+        loadingView.startAnimating()
         viewModel.loadProducts(ofCollection: collection) { error in
-            self.isFetching = false
             DispatchQueue.main.async {
                 if error != nil {
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -57,6 +54,7 @@ class CollectionDetailVC: UITableViewController {
                     self.present(alert, animated: true)
                 } else {
                     self.tableView.reloadData()
+                    self.loadingView.stopAnimating()
                 }
             }
         }

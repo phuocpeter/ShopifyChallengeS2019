@@ -23,7 +23,9 @@ class CollectionListVC: UITableViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
-
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         refresh()
     }
 
@@ -39,7 +41,9 @@ class CollectionListVC: UITableViewController {
                     }
                     alert.addAction(okayAction)
                     self.present(alert, animated: true)
+                    self.navigationItem.prompt = "Pull table to reload"
                 } else {
+                    self.navigationItem.prompt = nil
                     self.tableView.reloadData()
                 }
             }
@@ -56,21 +60,17 @@ class CollectionListVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow,
-                let cCollection = viewModel[indexPath.row] {
+                let collection = viewModel[indexPath.row] {
                 let controller = (segue.destination as! UINavigationController).topViewController as! CollectionDetailVC
-                controller.loadProducts(ofCollection: cCollection)
+                controller.loadProducts(ofCollection: collection)
+                controller.navigationItem.title = collection.title
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
-                controller.navigationItem.title = cCollection.title
             }
         }
     }
 
     // MARK: - Table View
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.count
@@ -78,15 +78,9 @@ class CollectionListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let cCollection = viewModel[indexPath.row]
-        cell.textLabel!.text = cCollection?.title ?? "Empty"
+        let collection = viewModel[indexPath.row]
+        cell.textLabel!.text = collection?.title ?? "Empty"
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return false
     }
 }
 
