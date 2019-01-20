@@ -5,8 +5,12 @@ This iOS Application is created as a submission to Shopify's Mobile Developer In
 
 ### Screenshots
 
-![iPhone Primary View](https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPhonePrimaryView.png "iPhone Primary View")
+#### iPhone
 
-![iPhone Detail View](https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPhoneDetailView.png "iPhone Detail View")
+<img src="https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPhonePrimaryView.png" width="375" height="812" alt="iPhone Primary View" />
 
-![iPad View](https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPad.png "iPad View")
+<img src="https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPhoneDetailView.png" width="375" height="812" alt="iPhone Detail View" />
+
+#### iPad
+
+<img src="https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPad.png" width="375" height="812" alt="iPad View" />
