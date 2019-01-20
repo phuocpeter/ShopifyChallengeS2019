@@ -13,4 +13,4 @@ This iOS Application is created as a submission to Shopify's Mobile Developer In
 
 #### iPad
 
-<img src="https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPad.png" width="375" height="812" alt="iPad View" />
+<img src="https://raw.githubusercontent.com/phuocpeter19/ShopifyChallenge/master/Screenshots/iPad.png" alt="iPad View" />
