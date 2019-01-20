@@ -43,6 +43,9 @@
 		989D073321EE6A1200A84CD0 /* CollectionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewModel.swift; sourceTree = "<group>"; };
 		98F656AD21F3AFDC0075A15A /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		98F656AF21F3F5240075A15A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		98F656B121F3F8340075A15A /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad.png; sourceTree = "<group>"; };
+		98F656B221F3F8340075A15A /* iPhonePrimaryView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhonePrimaryView.png; sourceTree = "<group>"; };
+		98F656B321F3F8340075A15A /* iPhoneDetailView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneDetailView.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +62,10 @@
 		989D070121ED989C00A84CD0 = {
 			isa = PBXGroup;
 			children = (
+				98F656B021F3F81C0075A15A /* Screenshots */,
 				989D070C21ED989C00A84CD0 /* ShopifyChallenge */,
 				989D070B21ED989C00A84CD0 /* Products */,
+				98F656AF21F3F5240075A15A /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,7 +89,6 @@
 				989D071621ED989E00A84CD0 /* Assets.xcassets */,
 				989D071821ED989E00A84CD0 /* LaunchScreen.storyboard */,
 				989D071B21ED989E00A84CD0 /* Info.plist */,
-				98F656AF21F3F5240075A15A /* README.md */,
 			);
 			path = ShopifyChallenge;
 			sourceTree = "<group>";
@@ -126,6 +130,16 @@
 				989D073121EDAB7700A84CD0 /* API.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		98F656B021F3F81C0075A15A /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				98F656B121F3F8340075A15A /* iPad.png */,
+				98F656B221F3F8340075A15A /* iPhonePrimaryView.png */,
+				98F656B321F3F8340075A15A /* iPhoneDetailView.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
