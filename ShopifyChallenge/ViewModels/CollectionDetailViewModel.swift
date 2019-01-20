@@ -8,18 +8,31 @@
 
 import Foundation
 
+/// Manages list of products.
 class CollectionDetailViewModel {
 
+    /// Whether the view model is waiting for response from the API.
     var isFetching = false
+
+    /// The collection that these products are belonged to.
+    var collection: CustomCollection?
+
+    /// Datasource.
     private var api: API = ShopifyAPI()
+
+    /// Available products.
     private var products: [Product]?
+
+    /// The number of available products.
     var count: Int {
         get {
             return products?.count ?? 0
         }
     }
+
+    /// Whether data fetch has been done.
     var isLoaded: Bool {
-        return products != nil
+        return collection != nil && products != nil
     }
 
     subscript(index: Int) -> Product? {
@@ -28,9 +41,15 @@ class CollectionDetailViewModel {
         }
     }
 
+    /// Fetches products from API.
+    ///
+    /// - Parameters:
+    ///   - collection: the collection of the products.
+    ///   - completion: the completion handler to be called when fetch completed.
     func loadProducts(ofCollection collection: CustomCollection, completion: @escaping (Error?) -> ()) {
         guard !isFetching else { return }
         isFetching = true
+        self.collection = collection
         api.getProducts(for: collection) { (products, error) in
             guard error == nil else {
                 completion(error!)

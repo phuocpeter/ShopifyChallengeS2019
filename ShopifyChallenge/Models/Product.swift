@@ -8,13 +8,28 @@
 
 import Foundation
 
+/// Product Model.
 class Product {
+
+    /// Unique ID.
     let id: Int
+
+    /// Product title.
     let title: String
+
+    /// Name of the collection of the product.
     let collection: String
+
+    /// Description of the product.
     let body: String
+
+    /// Number of available products across all variants.
     let available: Int
+
+    /// URL string of product image.
     let imageURL: String
+
+    /// Product image data. Needs to be fetched using loadImageData(completion:)
     var imageData: Data?
 
     init(id: Int, title: String, body: String, available: Int, collection: String, imageURL: String) {
@@ -32,8 +47,7 @@ class Product {
             let title = json["title"] as? String,
             let variants = json["variants"] as? [[String: Any]],
             let image = json["image"] as? [String: Any],
-            let imageURL = image["src"] as? String
-            else {
+            let imageURL = image["src"] as? String else {
                 return nil
         }
 
@@ -51,7 +65,11 @@ class Product {
         self.available = available
     }
 
+    /// Load image from imageURL if it needed.
+    ///
+    /// - Parameter completion: the completion handler to be called when fetch completed.
     func loadImageData(completion: @escaping () -> ()) {
+        guard imageData == nil else { return completion() }
         if let url = URL(string: imageURL) {
             URLSession.shared.dataTask(with: url) { (data, _, error) in
                 guard error == nil else { return }

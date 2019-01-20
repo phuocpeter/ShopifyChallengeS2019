@@ -8,13 +8,14 @@
 
 import Foundation
 
+/// A mock data source solely for the purpose of testing.
 class MockAPI: API {
 
     func getCustomCollections(completion: @escaping CustomCollectionFetchResult) {
         var collection = [CustomCollection]()
-        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
-        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
-        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection"))
+        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
+        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
+        collection.append(CustomCollection(id: 68424466488, handle: "aerodynamic-collection", title: "Aerodynamic collection", imageURL: "https://placehold.it/80"))
         completion(collection, nil)
     }
 

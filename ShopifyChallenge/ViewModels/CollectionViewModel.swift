@@ -8,12 +8,19 @@
 
 import Foundation
 
+/// Manage a list of CustomCollection objects.
 class CollectionViewModel {
 
+    /// Whether the view model is waiting for response from the API.
     var isFetching = false
+
+    /// Datasource.
     private var api: API = ShopifyAPI()
+
+    /// Available CustomCollections.
     private var collection: [CustomCollection]?
 
+    /// Number of available CustomCollections.
     var count: Int {
         get {
             return collection?.count ?? 0
@@ -26,6 +33,9 @@ class CollectionViewModel {
         }
     }
 
+    /// Fetches data from API.
+    ///
+    /// - Parameter completion: the completion handler to be called when fetch completed.
     func refreshData(completion: @escaping (APIError?) -> ()) {
         guard !isFetching else { return }
         isFetching = true

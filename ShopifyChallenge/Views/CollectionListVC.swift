@@ -8,9 +8,13 @@
 
 import UIKit
 
+/// Primary View Controller
 class CollectionListVC: UITableViewController {
 
+    /// View Model.
     let viewModel = CollectionViewModel()
+
+    /// Secondary View Controller.
     var detailViewController: CollectionDetailVC? = nil
 
     override func viewDidLoad() {
@@ -27,11 +31,12 @@ class CollectionListVC: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         refresh()
     }
 
-    @objc
-    func refresh() {
+    /// Reload data.
+    @objc func refresh() {
         viewModel.refreshData { error in
             DispatchQueue.main.async {
                 self.tableView.refreshControl?.endRefreshing()

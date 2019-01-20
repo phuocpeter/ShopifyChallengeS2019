@@ -8,33 +8,35 @@
 
 import UIKit
 
+/// A Table View Cell representing Product Detail
 class ProductTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photoView: UIImageView?
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var collectionLabel: UILabel?
     @IBOutlet weak var availabilityLabel: UILabel?
+    @IBOutlet weak var descriptionLabel: UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let selectedBackground = UIView()
-        selectedBackground.backgroundColor = UIColor(red: 92.0 / 255.0, green: 106.0 / 255.0, blue: 196.0 / 255.0, alpha: 0.85)
-        selectedBackgroundView = selectedBackground
-        nameLabel?.highlightedTextColor = .white
-        collectionLabel?.highlightedTextColor = .white
-        availabilityLabel?.highlightedTextColor = .white
+        collectionLabel?.layer.masksToBounds = true
+        collectionLabel?.layer.cornerRadius = 8.0
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-
-    func configure(for product: Product, in tableView: UITableView, at indexPath: IndexPath) {
+    /// Display product detail.
+    ///
+    /// - Parameters:
+    ///   - product: the product to be displayed.
+    func configure(for product: Product) {
         self.nameLabel?.text = product.title
-        self.collectionLabel?.text = product.collection
-        self.availabilityLabel?.text = "Total Available: \(product.available)"
+        self.collectionLabel?.text = " \(product.collection) "
+        self.descriptionLabel?.text = product.body
+        if product.available > 1 {
+            self.availabilityLabel?.text = "\(product.available) availables"
+        } else {
+            self.availabilityLabel?.text = "\(product.available) available"
+        }
         product.loadImageData {
             if let imageData = product.imageData {
                 DispatchQueue.main.async {

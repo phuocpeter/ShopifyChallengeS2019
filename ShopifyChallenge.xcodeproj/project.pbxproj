@@ -21,6 +21,7 @@
 		989D073021EDAB6400A84CD0 /* ShopifyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D072F21EDAB6400A84CD0 /* ShopifyAPI.swift */; };
 		989D073221EDAB7700A84CD0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D073121EDAB7700A84CD0 /* API.swift */; };
 		989D073421EE6A1200A84CD0 /* CollectionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D073321EE6A1200A84CD0 /* CollectionDetailViewModel.swift */; };
+		98F656AE21F3AFDC0075A15A /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F656AD21F3AFDC0075A15A /* CollectionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		989D072F21EDAB6400A84CD0 /* ShopifyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyAPI.swift; sourceTree = "<group>"; };
 		989D073121EDAB7700A84CD0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		989D073321EE6A1200A84CD0 /* CollectionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewModel.swift; sourceTree = "<group>"; };
+		98F656AD21F3AFDC0075A15A /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				989D070F21ED989C00A84CD0 /* CollectionListVC.swift */,
 				989D071121ED989C00A84CD0 /* CollectionDetailVC.swift */,
+				98F656AD21F3AFDC0075A15A /* CollectionTableViewCell.swift */,
 				9840671421EFCD270001E21F /* ProductTableViewCell.swift */,
 			);
 			path = Views;
@@ -201,6 +204,7 @@
 				989D073021EDAB6400A84CD0 /* ShopifyAPI.swift in Sources */,
 				989D073221EDAB7700A84CD0 /* API.swift in Sources */,
 				989D072C21EDA1DE00A84CD0 /* MockAPI.swift in Sources */,
+				98F656AE21F3AFDC0075A15A /* CollectionTableViewCell.swift in Sources */,
 				9840671521EFCD270001E21F /* ProductTableViewCell.swift in Sources */,
 				989D072521ED9CD600A84CD0 /* Product.swift in Sources */,
 				989D070E21ED989C00A84CD0 /* AppDelegate.swift in Sources */,
